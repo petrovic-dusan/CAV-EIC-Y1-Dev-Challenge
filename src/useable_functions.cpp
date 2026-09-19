@@ -2,10 +2,7 @@
 // Created by dusan on 9/15/26.
 //
 
-#ifndef DEV_CHALLENGE_USEABLE_FUNCTIONS_CPP_H
-#define DEV_CHALLENGE_USEABLE_FUNCTIONS_CPP_H
-
-#include "antworld.h"
+#include "../include/antworld.h"
 
 /** @brief Checks all squares within foodRadius blocks of itself.
  *
@@ -63,6 +60,11 @@ std::vector<Coord> Ant::pheromoneScan(MapTemplate &pheromoneMap) {
  * @return coordinates of final ant position. can be used to double check it's final position
  */
 Coord Ant::move(MapTemplate &terrainMap, Coord dest, MapTemplate &foodMap) {
+    if (dest.first >= terrainMap.size() || dest.second >= terrainMap[0].size()) {
+        printf("illegal move: attempted to move to %d, %d in %d, %d grid space", dest.first, dest.second,
+               terrainMap.size(), terrainMap[0].size());
+        return this->position;
+    }
     std::vector<Coord> path = shortestPath(terrainMap, this->position, dest);
 
     for (int i = 1; i < path.size(); ++i) {
@@ -71,12 +73,13 @@ Coord Ant::move(MapTemplate &terrainMap, Coord dest, MapTemplate &foodMap) {
 
         int cost = 1 + std::abs(terrainMap[r1][c1] - terrainMap[r2][c2]);
         if (cost > energy) {
-            this->position = path[i - 1];
             break;
         }
+        this->position = path[i];
+        energy -= cost;
     }
 
-    if (foodMap[this->position.first][this->position.second] == 1) {
+    if (foodMap[this->position.first][this->position.second] == 1 && !this->carryingFood) {
         foodMap[this->position.first][this->position.second] = 0;
         this->carryingFood = true;
     }
@@ -120,5 +123,3 @@ void Ant::erasePheromone(MapTemplate &pheromoneMap) {
 Coord Ant::returnHome(MapTemplate &terrainMap, MapTemplate &foodMap) {
     return this->move(terrainMap, this->homeCoord, foodMap);
 }
-
-#endif //DEV_CHALLENGE_USEABLE_FUNCTIONS_CPP_H

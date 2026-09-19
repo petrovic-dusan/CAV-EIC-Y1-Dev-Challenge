@@ -1,8 +1,10 @@
 # Repository Setup Guide
 
-This guide will walk you through setting up the CAV Development Challenge repository on your local machine, creating your personal development branch, and uploading your work to GitHub.
+This guide will walk you through setting up the CAV Development Challenge repository on your local machine, creating
+your personal development branch, and uploading your work to GitHub.
 
-You will be using **Git** and **GitHub** throughout the challenge. If you have never used Git before, don't worry—you only need a small number of commands to get started.
+You will be using **Git** and **GitHub** throughout the challenge. If you have never used Git before, don't worry—you
+only need a small number of commands to get started.
 
 # 1. Before You Begin
 
@@ -13,7 +15,7 @@ Before cloning the repository, make sure your computer has the tools required to
 You will need:
 
 | Tool                  | Purpose                                                    |
-| --------------------- | ---------------------------------------------------------- |
+|-----------------------|------------------------------------------------------------|
 | **Git**               | Version control and interacting with the GitHub repository |
 | **C++ Compiler**      | Compiles the provided C++ source code                      |
 | **CMake**             | Configures the project's build system                      |
@@ -22,7 +24,8 @@ You will need:
 
 ### Recommended Development Environment
 
-We suggest using **CLion** for this challenge. CLion is a full-featured C++ IDE with excellent CMake integration, making it easy to configure, build, run, and debug the project.
+We suggest using **CLion** for this challenge. CLion is a full-featured C++ IDE with excellent CMake integration, making
+it easy to configure, build, run, and debug the project.
 
 Students can obtain a free JetBrains student license, which includes access to CLion and other JetBrains products:
 
@@ -40,7 +43,8 @@ If you are using **Visual Studio Code**, we recommend installing the following e
 
 The **GitLens** extension is also useful for working with Git, but is not required.
 
-> **Important:** Installing an IDE does not necessarily install a C++ compiler. Make sure you have an actual C++ toolchain installed on your machine.
+> **Important:** Installing an IDE does not necessarily install a C++ compiler. Make sure you have an actual C++
+> toolchain installed on your machine.
 
 ### Linux
 
@@ -63,7 +67,8 @@ You can then install CMake separately if it is not already available.
 
 ### Windows
 
-Windows users can use **Visual Studio with the Desktop Development with C++ workload**, or another C++ toolchain of their choice.
+Windows users can use **Visual Studio with the Desktop Development with C++ workload**, or another C++ toolchain of
+their choice.
 
 Regardless of your operating system or IDE, you should be able to run Git, CMake, and a C++ compiler before continuing.
 
@@ -96,7 +101,8 @@ cd EcoCAR
 
 We recommend using **SSH** to authenticate with GitHub.
 
-If you have **already configured an SSH key with GitHub on this computer**, you can skip this section and proceed directly to cloning the repository.
+If you have **already configured an SSH key with GitHub on this computer**, you can skip this section and proceed
+directly to cloning the repository.
 
 Otherwise, generate a new SSH key:
 
@@ -106,7 +112,8 @@ ssh-keygen -t ed25519 -C "yourmacid@mcmaster.ca"
 
 Replace `yourmacid` with your actual MacID.
 
-When prompted for where to save the key, the default location is normally appropriate. You may optionally configure a passphrase for additional security.
+When prompted for where to save the key, the default location is normally appropriate. You may optionally configure a
+passphrase for additional security.
 
 ### Copy Your Public Key
 
@@ -118,7 +125,8 @@ cat ~/.ssh/id_ed25519.pub
 
 Copy the **entire output** of this command.
 
-> Make sure you copy `id_ed25519.pub`, which is your **public key**. Never share the contents of `id_ed25519`, which is your private key.
+> Make sure you copy `id_ed25519.pub`, which is your **public key**. Never share the contents of `id_ed25519`, which is
+> your private key.
 
 On GitHub:
 
@@ -199,7 +207,8 @@ This gives you a simple change that you can use to create your first commit.
 
 # 4. Save Your First Commit
 
-Git tracks your work through **commits**. You can think of a commit as a checkpoint representing the state of your project at a particular point in development.
+Git tracks your work through **commits**. You can think of a commit as a checkpoint representing the state of your
+project at a particular point in development.
 
 First, check which files you have changed:
 
@@ -233,7 +242,8 @@ You have now created your first **local commit**.
 
 # 5. Push Your Branch to GitHub
 
-Commits initially exist only in your local copy of the repository. To upload them to GitHub, you need to **push** your branch.
+Commits initially exist only in your local copy of the repository. To upload them to GitHub, you need to **push** your
+branch.
 
 For your first push, run:
 
@@ -283,7 +293,8 @@ git push
 
 As a general rule, **make many commits and fewer pushes**.
 
-Commits are lightweight checkpoints in your development history. There is no need to wait until a feature is completely finished before committing.
+Commits are lightweight checkpoints in your development history. There is no need to wait until a feature is completely
+finished before committing.
 
 Good commit messages briefly describe what changed:
 
@@ -304,15 +315,19 @@ update
 fixed things
 ```
 
-A useful Git history makes it much easier to understand your development process, undo mistakes, debug problems, and collaborate with other developers.
+A useful Git history makes it much easier to understand your development process, undo mistakes, debug problems, and
+collaborate with other developers.
 
-Your commits also give us some insight into **how your solution developed over time**, not just the final code you submitted.
+Your commits also give us some insight into **how your solution developed over time**, not just the final code you
+submitted.
 
 # 7. Building the Project
 
-If you are using **CLion**, you can open the repository as a CMake project and use the **Run** button to build and execute the project. CLion will handle the necessary build and execution steps for you.
+If you are using **CLion**, you can open the repository as a CMake project and use the **Run** button to build and
+execute the project. CLion will handle the necessary build and execution steps for you.
 
-If you are using another IDE or working from the terminal, you must configure and build the project manually using CMake.
+If you are using another IDE or working from the terminal, you must configure and build the project manually using
+CMake.
 
 The repository uses **CMake** to configure the C++ build.
 
@@ -337,16 +352,66 @@ cmake --build .
 
 If the build completes successfully, your development environment is ready.
 
-> **Before changing any code, we strongly recommend building and running the provided project once.** This confirms that your compiler, CMake installation, and project dependencies are working correctly before you introduce your own changes.
+> **Before changing any code, we strongly recommend building and running the provided project once.** This confirms that
+> your compiler, CMake installation, and project dependencies are working correctly before you introduce your own
+> changes.
 
-If the original project does not build, resolve your environment/setup issue before beginning development. This will make debugging your own code significantly easier later.
+If the original project does not build, resolve your environment/setup issue before beginning development. This will
+make debugging your own code significantly easier later.
 
-#
+# 8. Navigating the repository
+
+**`Antworld.cpp`** and **`Antworld.h`** are files that you may read but should not be needing to edit.
+
+**`src/useable_functions.cpp`** are the functions that we have written for you to be used to control the ants.
+
+**`src/applicant_solution.cpp`** is where you will write the main part of your solution, **`AntWorld::forage()`**.
+
+**`src/main.cpp`** is the executable file that will run when the game and report your score.
+
+> Information about any given function should be clear from the included documentation/comments. If something is
+> unclear, contact **petrod6@mcmaster.ca**
+
+Finally, **`EIC Year 1 CAV Development Challenge — AntWorld.md`** is a markdown version of the challenge instructions
+posted on Teams. Feel free to reference it throughout your work on this dev challenge.
+
+# 9. Rules at a glance
+
+### Objective
+
+Maximize food returned to home.
+You control 8 ants.
+
+### You know..
+
+Each ant's position, energy, carrying state, and information
+returned by its sensors.
+
+### You do not know..
+
+Food outside sensor range.
+
+### Movement
+
+Four-connected grid movement. Energy cost between adjacent cells:
+1 + |height difference|
+
+### Food
+
+An ant automatically collects food when it reaches a food cell.
+
+### Scoring
+
++1 for each food item returned home.
+
+### Game Over
+
+All food collected, all ants dead, or maximum step count reached.
 
 # Git Command Quick Reference
 
 | Command                   | Purpose                                           |
-| ------------------------- | ------------------------------------------------- |
+|---------------------------|---------------------------------------------------|
 | `git status`              | See your current branch and modified/staged files |
 | `git branch`              | View your local branches                          |
 | `git checkout -b <name>`  | Create and switch to a new branch                 |
@@ -356,4 +421,6 @@ If the original project does not build, resolve your environment/setup issue bef
 | `git log`                 | View your commit history                          |
 | `git diff`                | View changes that have not yet been staged        |
 
-You do not need to become a Git expert for this challenge. However, **Git is an essential part of collaborative software development**, including the work we do on CAV. Becoming comfortable with this basic workflow will make working on the team significantly easier.
+You do not need to become a Git expert for this challenge. However, **Git is an essential part of collaborative software
+development**, including the work we do on CAV. Becoming comfortable with this basic workflow will make working on the
+team significantly easier.

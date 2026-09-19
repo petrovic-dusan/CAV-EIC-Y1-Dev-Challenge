@@ -38,7 +38,7 @@ public:
 
 class AntWorld {
 public:
-    AntWorld(int mapSize_x = 15, int mapSize_y = 15, int antCount = 8);
+    AntWorld(uint32_t seed, int mapSize_x = 15, int mapSize_y = 15, int antCount = 8);
 
     bool worldStep();
 
@@ -56,6 +56,9 @@ public:
     Coord homeCoordinates = Coord(-1, -1);
 
     int score = 0;
+
+private:
+    std::mt19937 rng;
 };
 
 

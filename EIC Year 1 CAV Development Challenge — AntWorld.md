@@ -53,19 +53,19 @@ solution.
 
 AntWorld consists of two primary components:
 
-1. **`AntColony`** — manages your ants and the overall state of your colony.
-2. **`WorldMap`** — represents the environment your ants must explore.
+1. Ant colony — The group of manipulatable actors.
+2. World map — 3 layers that represent the environment your ants must explore.
 
 ## The Ant Colony
 
-Every `Ant` within the `AntColony` can be controlled individually.
+Every `Ant` within the ant colony can be controlled individually.
 
 Each ant begins the game with:
 
 - A randomized amount of energy
 - A limited viewing radius of the overall map
 - The ability to move through the environment
-- The ability to interact with pheromones
+- The ability to interact with pheromones (hint markers)
 - The ability to collect and return food
 
 ### Movement
@@ -92,7 +92,7 @@ How—or whether—you use pheromones is up to you.
 
 Ants search the map for food. Once food is collected, it must be returned to the colony's home location to score points.
 
-The `AntColony` keeps track of information including:
+The game instance keeps track of information including:
 
 - Total points
 - Home coordinates
@@ -103,7 +103,8 @@ available resources are exhausted.
 
 # The World Map
 
-`WorldMap` represents the environment in which your colony operates. It consists of **three two-dimensional layers with
+The world map represents the environment in which your colony operates. It consists of **three two-dimensional layers
+with
 identical dimensions**.
 
 | Layer             | Description                                                                                                                                                                                                  |
@@ -124,7 +125,7 @@ The main game loop is driven by:
 
 Each step calls:
 
-`AntColony::forage()`
+`AntWorld::forage()`
 
 before updating the game state and checking whether the game has ended.
 
@@ -133,7 +134,7 @@ The game ends when `isGameOver()` determines that either:
 - All available food has been collected, **or**
 - All ants have run out of energy.
 
-## `AntColony::forage()`
+## `AntWorld::forage()`
 
 **This is where the core of your solution will live.**
 
@@ -169,8 +170,9 @@ environment, determine the desired behaviour, execute an action, and repeat usin
 
 You have significant freedom in how you implement your solution.
 
-You may add or modify functions as necessary, provided your changes **do not violate the spirit of the challenge or
-bypass the intended game mechanics**.
+You may add functions as necessary, provided your changes **do not violate the spirit of the challenge or
+bypass the intended game mechanics**. Any work done by the applicant should be added to the **`solution.cpp`** code
+file.
 
 You are encouraged to build upon the provided framework.
 

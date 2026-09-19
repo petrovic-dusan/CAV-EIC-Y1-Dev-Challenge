@@ -136,10 +136,7 @@ inline int moveAlongPath(
     return cost;
 }
 
-inline MapTemplate generateWorldMap(int mapSize_x, int mapSize_y) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-
+inline MapTemplate generateWorldMap(int mapSize_x, int mapSize_y, std::mt19937 &rng) {
     MapTemplate map(mapSize_x, std::vector<int>(mapSize_y));
 
     for (int row = 0; row < mapSize_x; ++row) {
@@ -172,14 +169,14 @@ inline MapTemplate generateWorldMap(int mapSize_x, int mapSize_y) {
             }
 
             std::uniform_int_distribution<int> dist(minValue, maxValue);
-            map[row][col] = dist(gen);
+            map[row][col] = dist(rng);
         }
     }
 
     return map;
 }
 
-inline MapTemplate spreadFood(int mapSize_x, int mapSize_y, int foodCount) {
+inline MapTemplate spreadFood(int mapSize_x, int mapSize_y, int foodCount, std::mt19937 &rng) {
     {
         std::vector<std::vector<int> > map(mapSize_x, std::vector<int>(mapSize_y, 0));
 
@@ -188,9 +185,7 @@ inline MapTemplate spreadFood(int mapSize_x, int mapSize_y, int foodCount) {
         std::iota(indices.begin(), indices.end(), 0);
 
         // Randomize their order
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::shuffle(indices.begin(), indices.end(), gen);
+        std::shuffle(indices.begin(), indices.end(), rng);
 
         // Set the first x randomly selected cells to 1
         for (int i = 0; i < foodCount; ++i) {

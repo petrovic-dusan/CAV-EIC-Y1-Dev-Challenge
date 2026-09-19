@@ -1,7 +1,8 @@
-#include "antworld.h"
+#include "../include/antworld.h"
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <iostream>
 
 //
 // Created by dusan on 9/4/26.
@@ -16,26 +17,26 @@ Ant::Ant(int initEnergy, Coord homeCoordinates) {
     this->homeCoord = homeCoordinates;
 }
 
-AntWorld::AntWorld(int mapSize_x, int mapSize_y, int antCount) {
+AntWorld::AntWorld(uint32_t seed, int mapSize_x, int mapSize_y, int antCount) : rng(seed) {
     // Generate the various world map layers
-    this->terrainMap = generateWorldMap(mapSize_x, mapSize_y);
+    this->terrainMap = generateWorldMap(mapSize_x, mapSize_y, this->rng);
     // come back to this
     int foodCount = int(mapSize_x * mapSize_y * 0.4);
-    this->foodMap = spreadFood(mapSize_x, mapSize_y, foodCount);
+    this->foodMap = spreadFood(mapSize_x, mapSize_y, foodCount, this->rng);
     this->pheromoneMap = MapTemplate(mapSize_x, std::vector<int>(mapSize_y, 0));
 
     // Randomly generating home coordinates
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
+
     std::uniform_int_distribution<int> rowDist(0, mapSize_x - 1);
     std::uniform_int_distribution<int> colDist(0, mapSize_y - 1);
-    this->homeCoordinates = {rowDist(gen), colDist(gen)};
+    this->homeCoordinates = {rowDist(rng), colDist(rng)};
 
     // initialize all the ants
     for (int i = 0; i < antCount; ++i) {
         // and initial energy for each ant
         int initialEnergy = std::uniform_int_distribution<int>(int(mapSize_x * mapSize_y * 0.2),
-                                                               int(mapSize_x * mapSize_y * 0.4))(gen);
+                                                               int(mapSize_x * mapSize_y * 0.4))(rng);
+        std::cout << initialEnergy << std::endl;
         this->ants.emplace_back(initialEnergy, this->homeCoordinates);
     }
 
